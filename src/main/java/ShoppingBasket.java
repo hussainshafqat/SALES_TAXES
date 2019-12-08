@@ -69,8 +69,8 @@ public class ShoppingBasket {
                     Product product = products.get(0);
                     double taxPerItem = PriceCalculator.calculateTax(product);
                     double itemsPrice = PriceCalculator.calculateTotalPrice(product, quantity, taxPerItem);
-                    System.out.println(quantity + " " + product.getDescription() + ": " + String.format("%.2f", itemsPrice)+
-                            " (tax @ "+String.format("%.2f", taxPerItem)+" per item)");
+                    System.out.println(quantity + " " + product.getDescription() + ": " + String.format("%.2f", itemsPrice));
+                            //+ " (tax @ "+String.format("%.2f", taxPerItem)+" per item)");
                     totalPrice += itemsPrice;
                     salesTaxPaid += taxPerItem*quantity;
                 }

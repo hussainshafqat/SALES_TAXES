@@ -1,18 +1,18 @@
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import util.ConfigProvider;
 import util.DefaultTaxConfig;
 
 import java.util.ArrayList;
 
-class ShoppingBasketTest {
+public class ShoppingBasketTest {
 
+    public ShoppingBasketTest() {
+    }
 
-
-    @BeforeEach
-    void setUp() {
+    @Before
+    public void setUp() {
         //not necessarily needed for our test purposes
         ConfigProvider.setInstance(new DefaultTaxConfig("config.properties"));
         //
@@ -32,7 +32,7 @@ class ShoppingBasketTest {
      * Total: 29.83
      */
     @Test
-    void providedInput1Test() {
+    public void providedInput1Test() {
         Product productBook = ProductFactory.produce(ProductType.BookType1, 1).get(0);
         Product productCd = ProductFactory.produce(ProductType.MusicCD, 1).get(0);
         Product productChocolateBar = ProductFactory.produce(ProductType.ChocolatesType1, 1).get(0);
@@ -57,7 +57,7 @@ class ShoppingBasketTest {
      * Total: 65.15
      */
     @Test
-    void providedInput2Test() {
+    public void providedInput2Test() {
         Product productChocolateBox = ProductFactory.produce(ProductType.ChocolatesType2, 1).get(0);
         Product productPerfume = ProductFactory.produce(ProductType.PerfumeType2, 1).get(0);
         ShoppingBasket basket = new ShoppingBasket();
@@ -84,7 +84,7 @@ class ShoppingBasketTest {
      * Total: 74.68
      */
     @Test
-    void providedInput3Test() {
+    public void providedInput3Test() {
         ArrayList<Product> productImportedPerfumes = ProductFactory.produce(ProductType.PerfumeType3, 1);
         ArrayList<Product> productPerfumes = ProductFactory.produce(ProductType.PerfumeType1, 1);
         ArrayList<Product> productPills = ProductFactory.produce(ProductType.Pills, 1);
@@ -102,7 +102,7 @@ class ShoppingBasketTest {
 
 
     @Test
-    void exemptedWithNWithoutImportDutyTest() {
+    public void exemptedWithNWithoutImportDutyTest() {
         Product productsBook = ProductFactory.produce(ProductType.BookType1, 1).get(0);
         Product productsImportedBook = ProductFactory.produce(ProductType.BookType2, 1).get(0);
         ShoppingBasket basket = new ShoppingBasket();
@@ -117,7 +117,7 @@ class ShoppingBasketTest {
     }
 
     @Test
-    void multipleItemsTest() {
+    public void multipleItemsTest() {
         ArrayList<Product> productImportedPerfumes = ProductFactory.produce(ProductType.PerfumeType3, 2);
         ArrayList<Product> productPerfumes = ProductFactory.produce(ProductType.PerfumeType1, 3);
         ArrayList<Product> productPills = ProductFactory.produce(ProductType.Pills, 4);
@@ -137,7 +137,7 @@ class ShoppingBasketTest {
 
     }
     @Test
-    void exemptedThreeItemsQtyFour() {
+    public void exemptedThreeItemsQtyFour() {
         ArrayList<Product> products = ProductFactory.produce(ProductType.BookType1, 4);
         ShoppingBasket basket = new ShoppingBasket();
         basket.addAllOfType(products);
