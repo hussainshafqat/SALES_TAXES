@@ -62,7 +62,7 @@ public class ShoppingBasket {
      */
     public void printPointOfSaleReceipt(){
         for(List<Product> products:getProducts().values()){
-            //at least one item
+            //at least one item in that category(product id)
             if(products != null) {
                 int quantity = products.size();
                 if (quantity >0) {
@@ -76,11 +76,15 @@ public class ShoppingBasket {
                 }
             }
         }
-        //salesTaxPaid= round2Nearest05(salesTaxPaid);
-        totalPrice=new BigDecimal(totalPrice).setScale(2, BigDecimal.ROUND_HALF_EVEN).doubleValue();
-        salesTaxPaid=new BigDecimal(salesTaxPaid).setScale(2, BigDecimal.ROUND_HALF_EVEN).doubleValue();
-        System.out.println("Sales Tax: "+ String.format("%.2f", salesTaxPaid));
-        System.out.println("Total: "+ String.format("%.2f", totalPrice));
+        if(products.size()>0){
+            totalPrice=new BigDecimal(totalPrice).setScale(2, BigDecimal.ROUND_HALF_EVEN).doubleValue();
+            salesTaxPaid=new BigDecimal(salesTaxPaid).setScale(2, BigDecimal.ROUND_HALF_EVEN).doubleValue();
+            System.out.println("Sales Tax: "+ String.format("%.2f", salesTaxPaid));
+            System.out.println("Total: "+ String.format("%.2f", totalPrice));
+        }else{
+            System.out.println("Thanks for the visit, just walk through please...:)");
+        }
+
     }
 
 }

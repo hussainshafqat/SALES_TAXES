@@ -40,7 +40,7 @@ public class ShoppingBasketTest {
         basket.add2Basket(productBook);
         basket.add2Basket(productCd);
         basket.add2Basket(productChocolateBar);
-        System.out.println("Output Provided Test 1:");
+        System.out.println("\nOutput Provided Test 1:");
         basket.printPointOfSaleReceipt();
         Assert.assertEquals(1.50, basket.getSalesTaxPaid(), 0);
         Assert.assertEquals(29.83, basket.getTotalPrice(), 0);
@@ -63,7 +63,7 @@ public class ShoppingBasketTest {
         ShoppingBasket basket = new ShoppingBasket();
         basket.add2Basket(productChocolateBox);
         basket.add2Basket(productPerfume);
-        System.out.println("Output Provided Test 2:");
+        System.out.println("\nOutput Provided Test 2:");
         basket.printPointOfSaleReceipt();
         Assert.assertEquals(7.65, basket.getSalesTaxPaid(), 0);
         Assert.assertEquals(65.15, basket.getTotalPrice(), 0);
@@ -94,7 +94,7 @@ public class ShoppingBasketTest {
         basket.addAllOfType(productPerfumes);
         basket.addAllOfType(productPills);
         basket.addAllOfType(productImportedChocolate);
-        System.out.println("Output Provided Test 3:");
+        System.out.println("\nOutput Provided Test 3:");
         basket.printPointOfSaleReceipt();
         Assert.assertEquals(6.70, basket.getSalesTaxPaid(), 0);
         Assert.assertEquals(74.68, basket.getTotalPrice(), 0);
@@ -108,7 +108,7 @@ public class ShoppingBasketTest {
         ShoppingBasket basket = new ShoppingBasket();
         basket.add2Basket(productsBook);
         basket.add2Basket(productsImportedBook);
-        System.out.println("Output exemptedWithNWithoutImportDutyTest:");
+        System.out.println("\nOutput two books one imported other not:");
         basket.printPointOfSaleReceipt();
         //no sales
         Assert.assertEquals(0, PriceCalculator.calculateTax(productsBook), 0);
@@ -127,7 +127,7 @@ public class ShoppingBasketTest {
         basket.addAllOfType(productPerfumes);
         basket.addAllOfType(productPills);
         basket.addAllOfType(productImportedChocolate);
-        System.out.println("Output Multiple items:");
+        System.out.println("\nOutput Multiple items:");
         basket.printPointOfSaleReceipt();
         Assert.assertEquals(2,basket.getProductsByProductId(ProductType.PerfumeType3.ordinal()).size(),0);
         Assert.assertEquals(3,basket.getProductsByProductId(ProductType.PerfumeType1.ordinal()).size(),0);
@@ -142,11 +142,19 @@ public class ShoppingBasketTest {
         ShoppingBasket basket = new ShoppingBasket();
         basket.addAllOfType(products);
         Assert.assertEquals(4,basket.getProductsByProductId(ProductType.BookType1.ordinal()).size(),0);
-        System.out.println("Output 4 items of the same product id:");
+        System.out.println("\nOutput 4 items of the same product id:");
         basket.printPointOfSaleReceipt();
 
     }
 
+    @Test
+    public void emptyBasketTest() {
+        ShoppingBasket basket = new ShoppingBasket();
+        Assert.assertEquals(0,basket.getProducts().size(),0);
+        System.out.println("\nOutput EmptyBasketTest:");
+        basket.printPointOfSaleReceipt();
+
+    }
     static class ProductFactory {
 
         static ArrayList<Product> produce(ProductType type, int qty) {
